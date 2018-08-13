@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Study Tracker</string>
+    <string name="default_subject_name">[Subject name]</string>
+    <string name="subject_name_hint">Please type the name of the new subject</string>
+    <string name="add_button_text">ADD</string>
+    <string name="cancel">CANCEL</string>
+    <string name="start_study">DO you want to dive into</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="stop_study">Do you want to take some break</string>
+    <string name="dailyReport">Daily Report</string>
+    <string name="weeklyReport">Weekly Report</string>
+    <string name="overallReport">Overall Report</string>
+    <string name="manageCourse">Manage Course</string>
+</resources>
