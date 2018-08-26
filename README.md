@@ -8,8 +8,8 @@ to study.
 by mannually noting the time and by adding it at the end of the day or week.
      But how it feels to have a button which you will on while studying and off it once finished. And it gives you various statistics such as the report of your total and average time spent on each subject whenever you ask.
      You do not have to worry about how to implement that button. It is the work of the Study Tracker android application. Simply you add 
-the subject of your choice and when you want to study long press the subject name in the list to on it when finished just long press again 
-to off it. You can ask for daily, weekly and overall report for total and average time spent on each subject.
+the subject of your choice and when you want to start the study long press the subject name in the list when finished just long press again 
+to stop studying. You can ask for daily, weekly and overall report for total and average time spent on each subject.
 Bar charts and pie charts available for easy visualization and comparision (work in progress).
 
 
