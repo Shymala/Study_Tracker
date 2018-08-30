@@ -11,7 +11,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/activity_horizontal_margin"
     tools:context="com.studytracker.android.studytracker.MainActivity">
 
     <android.support.v7.widget.Toolbar
@@ -23,7 +22,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/all_subjects_list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:background="#E8EAF6" />
 
 
 
@@ -35,6 +36,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:menu="@menu/drawer_view"
-        app:headerLayout="@layout/navigation_header"/>
+        app:headerLayout="@layout/navigation_header"
+        android:background="#E8EAF6"/>
 
 </android.support.v4.widget.DrawerLayout>

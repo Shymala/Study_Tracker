@@ -72,98 +72,103 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_baseline_dehaze_24px);
+       // if(savedInstanceState == null) {
+            /*SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.clear();
+*/
+       // }
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            ActionBar actionbar = getSupportActionBar();
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setHomeAsUpIndicator(R.drawable.ic_baseline_dehaze_24px);
 
 
-       // mNewSubjectNameEditText = (EditText) this.findViewById(R.id.subject_name_edit_text);
+            // mNewSubjectNameEditText = (EditText) this.findViewById(R.id.subject_name_edit_text);
 
-        RecyclerView subjectListRecyclerView;
+            RecyclerView subjectListRecyclerView;
 
-        // Set local attributes to corresponding views
-        subjectListRecyclerView = (RecyclerView) this.findViewById(R.id.all_subjects_list_view);
+            // Set local attributes to corresponding views
+            subjectListRecyclerView = (RecyclerView) this.findViewById(R.id.all_subjects_list_view);
 
-        // Set layout for the RecyclerView, because it's a list we are using the linear layout
-        subjectListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+            // Set layout for the RecyclerView, because it's a list we are using the linear layout
+            subjectListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // COMPLETED (2) Create a StudyTrackerDbHelper instance, pass "this" to the constructor
-        // Create a DB helper (this will create the DB if run for the first time)
-        StudyTrackerDbHelper dbHelper = new StudyTrackerDbHelper(this);
+            // COMPLETED (2) Create a StudyTrackerDbHelper instance, pass "this" to the constructor
+            // Create a DB helper (this will create the DB if run for the first time)
+            StudyTrackerDbHelper dbHelper = new StudyTrackerDbHelper(this);
 
-        // COMPLETED (3) Get a writable database reference using getWritableDatabase and store it in mDb
-        // Keep a reference to the mDb until paused or killed. Get a writable database
-        // because you will be adding restaurant customers
-        mDb = dbHelper.getWritableDatabase();
-        // COMPLETED (7) Run the getAllGuests function and store the result in a Cursor variable
-        Cursor cursor = getAllSubjects();
+            // COMPLETED (3) Get a writable database reference using getWritableDatabase and store it in mDb
+            // Keep a reference to the mDb until paused or killed. Get a writable database
+            // because you will be adding restaurant customers
+            mDb = dbHelper.getWritableDatabase();
+            // COMPLETED (7) Run the getAllGuests function and store the result in a Cursor variable
+            Cursor cursor = getAllSubjects();
 
-        // COMPLETED (12) Pass the resulting cursor count to the adapter
-        // Create an adapter for that cursor to display the data
-        mAdapter = new SubjectListAdapter(this, cursor);
+            // COMPLETED (12) Pass the resulting cursor count to the adapter
+            // Create an adapter for that cursor to display the data
+            mAdapter = new SubjectListAdapter(this, cursor);
 
-        // Link the adapter to the RecyclerView
-        subjectListRecyclerView.setAdapter(mAdapter);
+            // Link the adapter to the RecyclerView
+            subjectListRecyclerView.setAdapter(mAdapter);
 
-        //set the item touch listener
+            //set the item touch listener
 
-        subjectListRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(this,
-                subjectListRecyclerView, new ClickListener() {
-            @Override
-            public void onClick(View view, final int position) {
-                //Values are passing to activity & to fragment as well
-
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-                if(!studyInProgress) {
-                    studyStateDialog(view);
-                }
-                else{
-                    TextView t1 = (TextView) view.findViewById(R.id.subject_name_text_view);
-                    String currentSubName = t1.getText().toString();
-                    if(!studyingSubName.equals(currentSubName) ){
-                        Toast.makeText(MainActivity.this, "Hope you finished studying "+studyingSubName+"\n Please stop it before starting "+currentSubName,
-                                Toast.LENGTH_LONG).show();
-                    }else{
-                        stopStudying(view);
-                    }
-
+            subjectListRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(this,
+                    subjectListRecyclerView, new ClickListener() {
+                @Override
+                public void onClick(View view, final int position) {
+                    //Values are passing to activity & to fragment as well
 
                 }
-                //long subject_id = (long) view.getTag();
 
+                @Override
+                public void onLongClick(View view, int position) {
 
-            }
-        }));
-
-        mDrawerLayout = findViewById(R.id.drawer_layout);
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // set item as selected to persist highlight
-                        menuItem.setChecked(true);
-
-                        switch (menuItem.getItemId()){
-                            case R.id.daily_report:
-                                startActivity(new Intent(MainActivity.this, DailyStudyReport.class));
+                    if (!studyInProgress) {
+                        studyStateDialog(view);
+                    } else {
+                        TextView t1 = (TextView) view.findViewById(R.id.subject_name_text_view);
+                        String currentSubName = t1.getText().toString();
+                        if (!studyingSubName.equals(currentSubName)) {
+                            Toast.makeText(MainActivity.this, "Hope you finished studying " + studyingSubName + "\n Please stop it before starting " + currentSubName,
+                                    Toast.LENGTH_LONG).show();
+                        } else {
+                            stopStudying(view);
                         }
-                        // close drawer when item is tapped
-                        mDrawerLayout.closeDrawers();
 
-                        // Add code here to update the UI based on the item selected
-                        // For example, swap UI fragments here
 
-                        return true;
                     }
-                });
+                    //long subject_id = (long) view.getTag();
+
+
+                }
+            }));
+
+            mDrawerLayout = findViewById(R.id.drawer_layout);
+
+            NavigationView navigationView = findViewById(R.id.nav_view);
+            navigationView.setNavigationItemSelectedListener(
+                    new NavigationView.OnNavigationItemSelectedListener() {
+                        @Override
+                        public boolean onNavigationItemSelected(MenuItem menuItem) {
+                            // set item as selected to persist highlight
+                            menuItem.setChecked(true);
+
+                            switch (menuItem.getItemId()) {
+                                case R.id.daily_report:
+                                    startActivity(new Intent(MainActivity.this, DailyStudyReport.class));
+                            }
+                            // close drawer when item is tapped
+                            mDrawerLayout.closeDrawers();
+
+                            // Add code here to update the UI based on the item selected
+                            // For example, swap UI fragments here
+
+                            return true;
+                        }
+                    });
 
     }
 
@@ -537,7 +542,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("PREFS",MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
         editor.putString("studyingSubName", studyingSubName); // value to store
@@ -553,7 +558,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("PREFS",MODE_PRIVATE);
         studyingSubName = preferences.getString("studyingSubName", "");
         studyStartTime = preferences.getString("studyStartTime", "");
         studyingSubjectID = preferences.getLong("studyingSubjectID",-1);

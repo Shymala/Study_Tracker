@@ -14,6 +14,7 @@
         android:layout_weight="1"
         android:fontFamily="sans-serif"
         android:textSize="16sp"
-        android:text="@string/default_subject_name"/>
+        android:text="@string/default_subject_name"
+        android:textColor="#000000"/>
 
 </LinearLayout>

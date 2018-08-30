@@ -134,8 +134,8 @@ public class DailyStudyReport extends AppCompatActivity {
         for(int i=0; i< subID.length;i++){
 
             String mSub = subNameProps.getProperty(subID[i]);
-            Double mtime = Double.parseDouble(studyTimesProps.getProperty( subID[i]));
-
+            Double mtime = (studyTimesProps.getProperty( subID[i]) != null)? Double.parseDouble(studyTimesProps.getProperty( subID[i])):0.0;
+            //Double  mtime = 0.0;
             timeSeries.add(i,mtime);
             multiRenderer.addXTextLabel(i, mSub);
         }
