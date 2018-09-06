@@ -18,6 +18,10 @@
         </activity>
         <activity android:name=".DailyStudyReport"
             android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".WeeklyStudyReport"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".OverallStudyReport"
+            android:parentActivityName=".MainActivity"></activity>
         <activity android:name="org.achartengine.GraphicalActivity" />
 
     </application>
